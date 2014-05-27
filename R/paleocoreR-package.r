@@ -1,5 +1,5 @@
-#' paleocoreR2
+#' paleocoreR
 #'
-#' @name paleocoreR2
+#' @name paleocoreR
 #' @docType package
 NULL
