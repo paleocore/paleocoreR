@@ -14,6 +14,7 @@ The package currently only has one  function `getPCdata()`.  For example, to get
 
 ```
 getPCdata(family__contains="Murid", limit=0)
+#note: function currently uses http://localhost:8000 as the base URL
 ```
 
 see `?getPCdata` for additional information.
