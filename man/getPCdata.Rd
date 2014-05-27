@@ -3,7 +3,8 @@
 \alias{getPCdata}
 \title{function to download data from the paleocore API}
 \usage{
-getPCdata(project = "turkana", version = "v1", format = "csv", ...)
+getPCdata(project = "turkana", version = "v1",
+  base_url = "http://paleocore.org/API", format = "csv", ...)
 }
 \arguments{
 \item{project}{Name of paleocore project you want data from. Default is "turkana"}
@@ -12,9 +13,11 @@ getPCdata(project = "turkana", version = "v1", format = "csv", ...)
 
 \item{format}{The format in which to return data.  Default is "csv" other options include "json" and "xml". If other than CSV, you are responsible for parsing this data into a useful R object (e.g. dataframe).}
 
+\item{base_url}{The base url for the API, with no trailing slash.}
+
 \item{limit}{Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records.}
 
-\item{...}{An arbitrary number of filter critera in the form of "genus__contains=Austral"}
+\item{...}{An arbitrary number of filter critera in the following form: genus__contains="Austral"}
 }
 \description{
 This function creates a properly formatted URL string and attempts to get the corresponding data from the Paleocore API

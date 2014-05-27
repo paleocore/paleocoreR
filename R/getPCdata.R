@@ -4,14 +4,15 @@
 #' @param project Name of paleocore project you want data from. Default is "turkana"
 #' @param version Which version of the paleocore to use. Default is "v1"
 #' @param format The format in which to return data.  Default is "csv" other options include "json" and "xml". If other than CSV, you are responsible for parsing this data into a useful R object (e.g. dataframe).  
+#' @param base_url The base url for the API, with no trailing slash.
 #' @param limit Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records. 
-#' @param ... An arbitrary number of filter critera in the form of "genus__contains=Austral"
+#' @param ... An arbitrary number of filter critera in the following form: genus__contains="Austral"
 #' @keywords PaleoCore API paleoanthropology
 #' @export
 #' @examples
 #' getPCdata(tribe__contains="Tragel", limit=0)
 
-getPCdata <- function(project="turkana", version="v1", format="csv", ...) {
+getPCdata <- function(project="turkana", version="v1", base_url="http://paleocore.org/API",format="csv", ...) {
   require(httr)
   filter <- paste(
                 paste(
@@ -26,7 +27,7 @@ getPCdata <- function(project="turkana", version="v1", format="csv", ...) {
   
   formattedURL <- paste(
                       paste(
-                        "http://localhost:8000/API", 
+                        base_url, 
                         version, 
                         project, 
                         sep="/"
