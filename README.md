@@ -16,9 +16,13 @@ library(paleocoreR)
 The main function is `getPCdata()`.  For example, to get all records matching "Muridae" in the family name do the following
 
 ```
-getPCdata(family__contains="Murid", limit=0, base_url="http://localhost:8000/API")
+getPCdata(family__contains="Murid", limit=0)
 ```
+Note that this would also return any records where the family contains the text "Murid". For an exact match on "Muridae", you could try the following.
 
+```
+getPCdata(family__exact="Murid", limit=0)
+```
 see `?getPCdata` for additional information.
 
 ### Establishing your PaleoCore credentials
