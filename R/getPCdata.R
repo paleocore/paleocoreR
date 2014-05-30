@@ -11,7 +11,7 @@
 #' @examples
 #' getPCdata(tribe__contains="Tragel", limit=0)
 
-getPCdata <- function(project="turkana", version="v1", base_url="http://paleocore.org/API",format="csv", ...) {
+getPCdata <- function(project="turkana", version="v1", base_url="http://paleocore.org/API", ...) {
   require(httr)
   #format the filters as GET parameters
   filter <- paste(

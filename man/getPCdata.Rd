@@ -4,7 +4,7 @@
 \title{function to download data from the paleocore API}
 \usage{
 getPCdata(project = "turkana", version = "v1",
-  base_url = "http://paleocore.org/API", format = "csv", ...)
+  base_url = "http://paleocore.org/API", ...)
 }
 \arguments{
 \item{project}{Name of paleocore project you want data from. Default is "turkana"}
