@@ -36,6 +36,7 @@ getPCdata <- function(project="turkana", version="v1", base_url="http://paleocor
                     )
   
   attempt <-  GET(url = formattedURL)
-  if (attempt$status_code != 200) stop ("There was an error.  Maybe you mispelled something or tried to filter on a field that doesn't exist?")
+    if (attempt$status_code == 401) stop ("You are not authorized to get this data. Have you saved your username and api_key using setPCcredentials()")
+    if (attempt$status_code != 200) stop ("There was an error.  Maybe you mispelled something or tried to filter on a field that doesn't exist?")
   return(read.table(text = content(attempt), header=TRUE, sep=","))
 }
