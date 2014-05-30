@@ -3,7 +3,6 @@
 #' This function creates a properly formatted URL string and attempts to get the corresponding data from the Paleocore API
 #' @param project Name of paleocore project you want data from. Default is "turkana"
 #' @param version Which version of the paleocore to use. Default is "v1"
-#' @param format The format in which to return data.  Default is "csv" other options include "json" and "xml". If other than CSV, you are responsible for parsing this data into a useful R object (e.g. dataframe).  
 #' @param base_url The base url for the API, with no trailing slash.
 #' @param limit Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records. 
 #' @param ... An arbitrary number of filter critera in the following form: genus__contains="Austral"
@@ -23,7 +22,7 @@ getPCdata <- function(project="turkana", version="v1", base_url="http://paleocor
                 collapse="&"
                 )
   
-  URL_parameters = paste0("?format=", format, "&", filter)
+  URL_parameters = paste0("?format=csv", "&", filter)
   
   formattedURL <- paste(
                       paste(
