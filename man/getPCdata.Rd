@@ -11,7 +11,7 @@ getPCdata(project = "turkana", version = "v1",
 
 \item{version}{Which version of the paleocore to use. Default is "v1"}
 
-\item{base_url}{The base url for the API, with no trailing slash.}
+\item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org/API}
 
 \item{limit}{Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records.}
 
