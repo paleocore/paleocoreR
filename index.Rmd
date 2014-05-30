@@ -1,2 +1,19 @@
 Using the Paleocore R API Interface - Turkana Analysis
 ========================================================
+
+
+## Preliminaries
+
+```{r echo = TRUE, warning=FALSE, message=FALSE}
+library(devtools)
+install_github("paleocore/paleocoreR")
+library(paleocoreR)
+library(ggplot2)
+```
+
+## Pull down all the bovids
+
+```{r getbovids, fig.width=14, height=9}
+bovids <- getPCdata(project = "turkana", family="Bovidae", limit=0)
+qplot(data=bovids, x=tribe)
+```
