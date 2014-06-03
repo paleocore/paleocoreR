@@ -1,6 +1,7 @@
-Using the Paleocore R API Interface - Turkana Analysis
+Using the Paleocore R API Interface
 ========================================================
 
+This demo shows the functionality of the PaleoCore API using the Turkana dataset as an example. 
 
 ## Preliminaries
 
@@ -12,19 +13,62 @@ library(paleocoreR)
 library(ggplot2)
 ```
 
+## See which fields can be filtered on in the Turkana dataset
+
+
+```r
+getFilters(project = "turkana")
+```
+
+```
+## Loading required package: httr
+## Loading required package: rjson
+## The following fields from the turkana project can be passed as query filters using getPCdata().
+```
+
+```
+##  [1] "age"                   "age_estimate"         
+##  [3] "age_max"               "age_min"              
+##  [5] "body_element"          "body_element_code"    
+##  [7] "body_size"             "class_field"          
+##  [9] "collecting_area"       "color"                
+## [11] "date_entered"          "excavation"           
+## [13] "family"                "family_code"          
+## [15] "formation"             "genus"                
+## [17] "genus_code"            "genus_qualifier"      
+## [19] "identifier"            "level"                
+## [21] "locality"              "matrix"               
+## [23] "member"                "order"                
+## [25] "part_description"      "publication_author"   
+## [27] "remarks"               "sex"                  
+## [29] "side"                  "signed"               
+## [31] "species"               "species_qualifier"    
+## [33] "specimen_number"       "square_number"        
+## [35] "storage_location"      "stratigraphic_code"   
+## [37] "stratigraphic_unit"    "study_area"           
+## [39] "subfamily"             "surface"              
+## [41] "tribe"                 "tribe_code"           
+## [43] "weathering"            "year_found"           
+## [45] "year_identified"       "year_published"       
+## [47] "year_published_suffix"
+```
+
+```
+## Example usage:
+## age='somevalue'
+## age__exact='somevalue'
+## age__contains='somevalue'
+## age__startswith='somevalue'
+## age__endswith='somevalue'
+```
+
+
 
 ## Pull down all the bovids
 
 
 ```r
 bovids <- getPCdata(project = "turkana", family = "Bovidae", limit = 0)
-```
-
-```
-## Loading required package: httr
-```
-
-```r
 str(bovids)
 ```
 
@@ -139,4 +183,15 @@ qplot(data = bovids, x = tribe)
 ```
 
 ![plot of chunk plotbytribe](figure/plotbytribe.png) 
+
+
+
+## Authentication
+
+Some datasets require authentication (Turkana does not).  This R package provides a convenience function for storing your PaleoCore username and api_key for authentication.  You can get an api key from a paleocore administrator. 
+
+
+```r
+setPCcredentials(username = "proconsul", api_key = "s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
+```
 
