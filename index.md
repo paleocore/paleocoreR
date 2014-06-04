@@ -188,7 +188,7 @@ qplot(data = bovids, x = tribe)
 
 ## Authentication
 
-Some datasets require authentication (Turkana does not).  This R package provides a convenience function for storing your PaleoCore username and api_key for authentication.  You can get an api key from a paleocore administrator. 
+Some datasets require authentication (Turkana does not).  This R package provides a convenience function for storing your PaleoCore username and api_key for authentication.  If you have a paleocore login account, you can get your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
 
 
 ```r
