@@ -27,7 +27,7 @@ see `?getPCdata` for additional information.
 
 ### Establishing your PaleoCore credentials
 
-Some of the datasets exposed by the API require authentication using an api key. If you have a paleocore login, you can get your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). Once you have it, you can store this during an R session using the `setPCcredentials()` function. If you need to establish a login account, you can [contact the paleocore administrators]("http://paleocore.org/about"). 
+Some of the datasets exposed by the API require authentication using an api key. If you have a paleocore login, you can get your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). Once you have it, you can store this during an R session using the `setPCcredentials()` function. If you need to establish a login account, you can [contact the paleocore administrators](http://paleocore.org/about). 
 
 see `?setPCcredentials` for additional information
 
