@@ -34,7 +34,7 @@ getPCdata <- function(project="turkana", version="v1", base_url="http://paleocor
   attempt <-  GET(url = formattedURL)
   if (attempt$status_code == 401) {
     #if unauthorized, try it with username and api_key
-    if(any(!exists('username'), !exists('api_key'))) stop("You need to set your username and api_key using setPCcredentials()")
+    if(any(!exists('username'), !exists('api_key'))) stop("You need to set your username and api_key using setPCcredentials(). You can get an api_key at http://paleocore.org/apikey.")
     attempt <-  GET(url = sprintf("%s&username=%s&api_key=%s", formattedURL, username, api_key))
   }
   
