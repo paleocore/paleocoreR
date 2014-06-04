@@ -200,9 +200,14 @@ hr {
 
 <h2>Preliminaries</h2>
 
+<p>The PaleocoreR package is not yet on CRAN, so you cannot install it using the normal R package installation method.  Instead you can use a function called <code>install_github()</code> from the <code>devtools</code> package to install the package from the <a href="http://paleocore.github.com/paleocoreR">paleocoreR github page</a>, as shown below.</p>
+
 <pre><code class="r">library(devtools)
 install_github(&quot;paleocore/paleocoreR&quot;)
 library(paleocoreR)
+
+# also load the ggplot2 package for graphing.  If this package is not
+# installed already you can try install.packages(&#39;ggplot2&#39;)
 library(ggplot2)
 </code></pre>
 

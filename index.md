@@ -4,12 +4,16 @@ Using the Paleocore R API Interface
 This demo shows the functionality of the PaleoCore API using the Turkana dataset as an example. 
 
 ## Preliminaries
+The PaleocoreR package is not yet on CRAN, so you cannot install it using the normal R package installation method.  Instead you can use a function called `install_github()` from the `devtools` package to install the package from the [paleocoreR github page](http://paleocore.github.com/paleocoreR), as shown below.
 
 
 ```r
 library(devtools)
 install_github("paleocore/paleocoreR")
 library(paleocoreR)
+
+# also load the ggplot2 package for graphing.  If this package is not
+# installed already you can try install.packages('ggplot2')
 library(ggplot2)
 ```
 
