@@ -1,141 +1,17 @@
 <!DOCTYPE html>
-<!-- saved from url=(0014)about:internet -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta http-equiv="x-ua-compatible" content="IE=9" >
 
 <title>paleocoreR</title>
 
+
+
+
+
 <style type="text/css">
-body, td {
-   font-family: sans-serif;
-   background-color: white;
-   font-size: 12px;
-   margin: 8px;
-}
-
-tt, code, pre {
-   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
-}
-
-h1 { 
-   font-size:2.2em; 
-}
-
-h2 { 
-   font-size:1.8em; 
-}
-
-h3 { 
-   font-size:1.4em; 
-}
-
-h4 { 
-   font-size:1.0em; 
-}
-
-h5 { 
-   font-size:0.9em; 
-}
-
-h6 { 
-   font-size:0.8em; 
-}
-
-a:visited {
-   color: rgb(50%, 0%, 50%);
-}
-
-pre {	
-   margin-top: 0;
-   max-width: 95%;
-   border: 1px solid #ccc;
-   white-space: pre-wrap;
-}
-
-pre code {
-   display: block; padding: 0.5em;
-}
-
-code.r, code.cpp {
-   background-color: #F8F8F8;
-}
-
-table, td, th {
-  border: none;
-}
-
-blockquote {
-   color:#666666;
-   margin:0;
-   padding-left: 1em;
-   border-left: 0.5em #EEE solid;
-}
-
-hr {
-   height: 0px;
-   border-bottom: none;
-   border-top-width: thin;
-   border-top-style: dotted;
-   border-top-color: #999999;
-}
-
-@media print {
-   * { 
-      background: transparent !important; 
-      color: black !important; 
-      filter:none !important; 
-      -ms-filter: none !important; 
-   }
-
-   body { 
-      font-size:12pt; 
-      max-width:100%; 
-   }
-       
-   a, a:visited { 
-      text-decoration: underline; 
-   }
-
-   hr { 
-      visibility: hidden;
-      page-break-before: always;
-   }
-
-   pre, blockquote { 
-      padding-right: 1em; 
-      page-break-inside: avoid; 
-   }
-
-   tr, img { 
-      page-break-inside: avoid; 
-   }
-
-   img { 
-      max-width: 100% !important; 
-   }
-
-   @page :left { 
-      margin: 15mm 20mm 15mm 10mm; 
-   }
-     
-   @page :right { 
-      margin: 15mm 10mm 15mm 20mm; 
-   }
-
-   p, h2, h3 { 
-      orphans: 3; widows: 3; 
-   }
-
-   h2, h3 { 
-      page-break-after: avoid; 
-   }
-}
-
+custom.css
 </style>
-
-
 
 
 
@@ -144,65 +20,8 @@ hr {
 <body>
 <h1>paleocoreR</h1>
 
-<p>R package for interacting with the Paleocore API</p>
-
-<h3>To use this package</h3>
-
-<pre><code>require(devtools)
-require(httr)
-install_github(&quot;paleocore/paleocoreR&quot;)
-library(paleocoreR)
-</code></pre>
-
-<h3>Getting data from PaleoCore</h3>
-
-<p>The main function is <code>getPCdata()</code>.  For example, to get all records matching &ldquo;Muridae&rdquo; in the family name do the following</p>
-
-<pre><code>getPCdata(family__contains=&quot;Murid&quot;, limit=0)
-</code></pre>
-
-<p>Note that this would also return any records where the family contains the text &ldquo;Murid&rdquo;. For an exact match on &ldquo;Muridae&rdquo;, you could try the following.</p>
-
-<pre><code>getPCdata(family__exact=&quot;Muridae&quot;, limit=0)
-</code></pre>
-
-<p>see <code>?getPCdata</code> for additional information.</p>
-
-<h3>Establishing your PaleoCore credentials</h3>
-
-<p>Some of the datasets exposed by the API require authentication using an api key. If you have a paleocore login, you can get your api_key at <a href="http://paleocore.org/apikey">http://paleocore.org/apikey</a>. Once you have it, you can store this during an R session using the <code>setPCcredentials()</code> function. If you need to establish a login account, you can <a href="http://paleocore.org/about">contact the paleocore administrators</a>. </p>
-
-<p>see <code>?setPCcredentials</code> for additional information</p>
-
-<h3>Figuring out which fields you can filter on</h3>
-
-<p>The API is flexible, in that you can pass query filters to request particular subsets of the data.  The <code>getFilters()</code> function is a convenient way to see which fields are available for filtering, and to see examples of their usage. For example:</p>
-
-<pre><code>getFilters(&quot;turkana&quot;)
-</code></pre>
-
-<p>Yeilds the following results:</p>
-
-<pre><code>Loading required package: httr
-Loading required package: rjson
-The following fields from the turkana project can be passed as query filters using getPCdata().
- [1] &quot;age&quot;                   &quot;age_estimate&quot;          &quot;age_max&quot;               &quot;age_min&quot;               &quot;body_element&quot;          &quot;body_element_code&quot;    
- [7] &quot;body_size&quot;             &quot;class_field&quot;           &quot;collecting_area&quot;       &quot;color&quot;                 &quot;date_entered&quot;          &quot;excavation&quot;           
-[13] &quot;family&quot;                &quot;family_code&quot;           &quot;formation&quot;             &quot;genus&quot;                 &quot;genus_code&quot;            &quot;genus_qualifier&quot;      
-[19] &quot;identifier&quot;            &quot;level&quot;                 &quot;locality&quot;              &quot;matrix&quot;                &quot;member&quot;                &quot;order&quot;                
-[25] &quot;part_description&quot;      &quot;publication_author&quot;    &quot;remarks&quot;               &quot;sex&quot;                   &quot;side&quot;                  &quot;signed&quot;               
-[31] &quot;species&quot;               &quot;species_qualifier&quot;     &quot;specimen_number&quot;       &quot;square_number&quot;         &quot;storage_location&quot;      &quot;stratigraphic_code&quot;   
-[37] &quot;stratigraphic_unit&quot;    &quot;study_area&quot;            &quot;subfamily&quot;             &quot;surface&quot;               &quot;tribe&quot;                 &quot;tribe_code&quot;           
-[43] &quot;weathering&quot;            &quot;year_found&quot;            &quot;year_identified&quot;       &quot;year_published&quot;        &quot;year_published_suffix&quot;
-Example usage:
-age=&#39;somevalue&#39;
-age__exact=&#39;somevalue&#39;
-age__contains=&#39;somevalue&#39;
-age__startswith=&#39;somevalue&#39;
-age__endswith=&#39;somevalue&#39;
-</code></pre>
+<h2>A demo of how to use this package is <a href="http://paleocore.github.io/paleocoreR">available here</a>.</h2>
 
 </body>
 
 </html>
-
