@@ -4,14 +4,14 @@
 \title{function to download data from the paleocore API}
 \usage{
 getPCdata(project = "turkana", version = "v1",
-  base_url = "http://paleocore.org/API", ...)
+  base_url = "http://paleocore.org", ...)
 }
 \arguments{
 \item{project}{Name of paleocore project you want data from. Default is "turkana"}
 
 \item{version}{Which version of the paleocore to use. Default is "v1"}
 
-\item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org/API}
+\item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org}
 
 \item{limit}{Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records.}
 

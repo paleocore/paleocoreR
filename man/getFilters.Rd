@@ -3,14 +3,14 @@
 \alias{getFilters}
 \title{function to get filter field options for a particular API resource}
 \usage{
-getFilters(project, version = "v1", base_url = "http://paleocore.org/API")
+getFilters(project, version = "v1", base_url = "http://paleocore.org")
 }
 \arguments{
 \item{project}{The name of the paleocore project to get information on}
 
 \item{version}{The version of the API to use, defaults to "v1"}
 
-\item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org/API}
+\item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org/}
 }
 \description{
 This function gets a listing of the fields that are available for filtering when using the getPCdata() function

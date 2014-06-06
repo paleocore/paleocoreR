@@ -3,7 +3,7 @@
 #' This function creates a properly formatted URL string and attempts to get the corresponding data from the Paleocore API
 #' @param project Name of paleocore project you want data from. Default is "turkana"
 #' @param version Which version of the paleocore to use. Default is "v1"
-#' @param base_url The base url for the API, with no trailing slash. Defaults to http://paleocore.org/API
+#' @param base_url The base url for the API, with no trailing slash. Defaults to http://paleocore.org
 #' @param limit Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records. 
 #' @param ... An arbitrary number of filter critera in the following form: genus__contains="Austral"
 #' @keywords PaleoCore API paleoanthropology
@@ -11,7 +11,7 @@
 #' @examples
 #' getPCdata(tribe__contains="Tragel", limit=0)
 
-getPCdata <- function(project="turkana", version="v1", base_url="http://paleocore.org/API", ...) {
+getPCdata <- function(project="turkana", version="v1", base_url="http://paleocore.org", ...) {
   require(httr)
   #format the filters as GET parameters
   filter <- paste(
@@ -26,7 +26,7 @@ getPCdata <- function(project="turkana", version="v1", base_url="http://paleocor
   URL_parameters = paste0("?format=csv", "&", filter)
   
   formattedURL <- paste(
-                      paste(base_url, version, project, sep="/"), 
+                      paste(base_url, "API", version, project, sep="/"), 
                       URL_parameters, 
                       sep="/"
                       )
