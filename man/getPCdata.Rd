@@ -3,11 +3,11 @@
 \alias{getPCdata}
 \title{function to download data from the paleocore API}
 \usage{
-getPCdata(project = "turkana", version = "v1",
+getPCdata(resource = "turkana", version = "v1",
   base_url = "http://paleocore.org", ...)
 }
 \arguments{
-\item{project}{Name of paleocore project you want data from. Default is "turkana"}
+\item{resource}{Name of paleocore resource you want data from. Default is "turkana"}
 
 \item{version}{Which version of the paleocore to use. Default is "v1"}
 

@@ -3,10 +3,10 @@
 \alias{getPCfilters}
 \title{function to get filter field options for a particular API resource}
 \usage{
-getPCfilters(project, version = "v1", base_url = "http://paleocore.org")
+getPCfilters(resource, version = "v1", base_url = "http://paleocore.org")
 }
 \arguments{
-\item{project}{The name of the paleocore project to get information on}
+\item{resource}{The name of the paleocore resource to get information on}
 
 \item{version}{The version of the API to use, defaults to "v1"}
 
