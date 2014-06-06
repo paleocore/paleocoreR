@@ -17,17 +17,45 @@ library(paleocoreR)
 library(ggplot2)
 ```
 
-## See which fields can be filtered on in the Turkana dataset
+## First, we can check which resources are available
 
 
 ```r
-getFilters(project = "turkana")
+getPCresources()
 ```
 
 ```
 ## Loading required package: httr
 ## Loading required package: rjson
-## The following fields from the turkana project can be passed as query filters using getPCdata().
+## The following resources are available through the PaleoCore API.
+```
+
+```
+## [1] drp_occurrence: Requires api_key authentication.
+## [1] drp_taxonomy: Requires api_key authentication.
+## [1] turkana: Publicly available resource
+```
+
+
+## Authentication
+
+Some datasets require authentication (turkana does not).  You can store your PaleoCore username and api_key for authentication using the convenience function `setPCcredentials()`.  If you have a paleocore login account, you can obtain your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
+
+
+```r
+setPCcredentials(username = "proconsul", api_key = "s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
+```
+
+
+## See which fields can be filtered on in the Turkana dataset
+
+
+```r
+getPCfilters(resource = "turkana")
+```
+
+```
+## The following fields from the turkana resource can be passed as query filters using getPCdata().
 ```
 
 ```
@@ -62,17 +90,20 @@ getFilters(project = "turkana")
 ## age='somevalue'
 ## age__exact='somevalue'
 ## age__contains='somevalue'
+## age__lt='somevalue'
+## age__gt='somevalue'
 ## age__startswith='somevalue'
 ## age__endswith='somevalue'
 ```
 
 
 
-## Pull down all the bovids
+## Getting data using `getPCdata()`
 
+The workhorse function of the `paleocoreR` package is called `getPCdata()`.  Here we will download all of the bovid records from the turkana dataset.  
 
 ```r
-bovids <- getPCdata(project = "turkana", family = "Bovidae", limit = 0)
+bovids <- getPCdata(resource = "turkana", family = "Bovidae", limit = 0)
 str(bovids)
 ```
 
@@ -189,13 +220,4 @@ qplot(data = bovids, x = tribe)
 ![plot of chunk plotbytribe](figure/plotbytribe.png) 
 
 
-
-## Authentication
-
-Some datasets require authentication (Turkana does not).  This R package provides a convenience function for storing your PaleoCore username and api_key for authentication.  If you have a paleocore login account, you can get your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
-
-
-```r
-setPCcredentials(username = "proconsul", api_key = "s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
-```
 

@@ -15,17 +15,32 @@ library(paleocoreR)
 #install.packages("ggplot2")
 library(ggplot2)
 ```
+## First, we can check which resources are available
+
+```{r getPCresources}
+getPCresources()
+```
+
+## Authentication
+
+Some datasets require authentication (turkana does not).  You can store your PaleoCore username and api_key for authentication using the convenience function `setPCcredentials()`.  If you have a paleocore login account, you can obtain your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
+
+```{r authentication}
+setPCcredentials(username="proconsul", api_key="s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
+```
+
 ## See which fields can be filtered on in the Turkana dataset
 
 ```{r getfilters}
-getFilters(project="turkana")
+getPCfilters(resource="turkana")
 ```
 
 
-## Pull down all the bovids
+## Getting data using `getPCdata()`
 
+The workhorse function of the `paleocoreR` package is called `getPCdata()`.  Here we will download all of the bovid records from the turkana dataset.  
 ```{r getbovids}
-bovids <- getPCdata(project = "turkana", family="Bovidae", limit=0)
+bovids <- getPCdata(resource = "turkana", family="Bovidae", limit=0)
 str(bovids)
 ```
 
@@ -35,10 +50,3 @@ qplot(data=bovids, x=tribe)
 ```
 
 
-## Authentication
-
-Some datasets require authentication (Turkana does not).  This R package provides a convenience function for storing your PaleoCore username and api_key for authentication.  If you have a paleocore login account, you can get your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
-
-```{r authentication}
-setPCcredentials(username="proconsul", api_key="s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
-```
