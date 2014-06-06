@@ -7,9 +7,9 @@
 #' @keywords PaleoCore API paleoanthropology
 #' @export
 #' @examples
-#' getFilters("turkana")
+#' getPCfilters("turkana")
 
-getFilters <- function(project, version="v1", base_url="http://paleocore.org") {
+getPCfilters <- function(project, version="v1", base_url="http://paleocore.org") {
   require(httr)
   requestURL <- paste(paste(base_url, "API", version, project, "schema/", sep="/"),"format=json", sep="?")
   attempt <- GET(requestURL)
