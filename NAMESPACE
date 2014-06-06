@@ -2,4 +2,5 @@
 
 export(getFilters)
 export(getPCdata)
+export(getPCresources)
 export(setPCcredentials)
