@@ -13,6 +13,8 @@
 
 getPCdata <- function(resource="turkana", version="v1", base_url="http://paleocore.org", ...) {
   require(httr)
+  require(jsonlite)
+  require(plyr)
   #format the filters as GET parameters
   filter <- paste(
                 paste(
@@ -23,7 +25,7 @@ getPCdata <- function(resource="turkana", version="v1", base_url="http://paleoco
                 collapse="&"
                 )
   
-  URL_parameters = paste0("?format=csv", "&", filter)
+  URL_parameters = paste0("?format=json", "&", filter)
   
   formattedURL <- paste(
                       paste(base_url, "API", version, resource, sep="/"), 
@@ -40,5 +42,13 @@ getPCdata <- function(resource="turkana", version="v1", base_url="http://paleoco
   
     if (attempt$status_code == 401) stop (sprintf("User %s with api_key=%s is not authorized to get this data.", username, api_key))
     if (attempt$status_code != 200) stop ("There was an error.  Maybe you mispelled something or tried to filter on a field that doesn't exist?")
-  return(read.table(text = content(attempt, as="text"), header=TRUE, sep=","))
+  
+  theDATA <- content(attempt, as="parsed")
+  
+  flattened <- lapply(theDATA$objects, FUN = function(object) {
+              flat <- as.data.frame(rbind(unlist(object)))
+              return(flat)
+            })
+  result <- rbind.fill(flattened)
+  return(result)
 }
