@@ -4,12 +4,13 @@
 #' @param dataset The name of the paleocore dataset to get information on
 #' @param version The version of the API to use, defaults to "v1"
 #' @param base_url The base url for the API, with no trailing slash. Defaults to http://paleocore.org/
+#' @param return_list Boolean. Whether or not to return a list of available filters, or if not, to simply print them to console.  Default is FALSE.
 #' @keywords PaleoCore API paleoanthropology
 #' @export
 #' @examples
 #' list_pcore_filters("turkana")
 
-list_pcore_filters <- function(dataset, version="v1", base_url="http://paleocore.org") {
+list_pcore_filters <- function(dataset, version="v1", base_url="http://paleocore.org", return_list=FALSE) {
   require(httr)
   requestURL <- paste(paste(base_url, "API", version, dataset, "schema/", sep="/"),"format=json", sep="?")
   attempt <- GET(requestURL)
@@ -30,5 +31,5 @@ list_pcore_filters <- function(dataset, version="v1", base_url="http://paleocore
   message("Example usage:")
   examples<-paste0(names(schema$filtering)[1], c("", "__exact","__contains", "__lt","__gt", "__startswith", "__endswith"), "=", "'somevalue'")
   invisible(lapply(examples, FUN=message))#invisible() stops lapply from printing the list being iterated over to the console
-
+  if(return_list) return(schema$filtering)
 }
