@@ -1,7 +1,7 @@
 #' function to download data from the paleocore API
 #'
 #' This function creates a properly formatted URL string and attempts to get the corresponding data from the Paleocore API
-#' @param resource Name of paleocore resource you want data from. Default is "turkana"
+#' @param dataset Name of paleocore dataset you want data from. Default is "turkana"
 #' @param version Which version of the paleocore to use. Default is "v1"
 #' @param base_url The base url for the API, with no trailing slash. Defaults to http://paleocore.org
 #' @param limit Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records. 
@@ -9,9 +9,9 @@
 #' @keywords PaleoCore API paleoanthropology
 #' @export
 #' @examples
-#' getPCdata(tribe__contains="Tragel", limit=0)
+#' get_pcore_data(tribe__contains="Tragel", limit=0)
 
-getPCdata <- function(resource="turkana", version="v1", base_url="http://paleocore.org", ...) {
+get_pcore_data <- function(dataset="turkana", version="v1", base_url="http://paleocore.org", ...) {
   require(httr)
   require(jsonlite)
   require(plyr)
@@ -28,7 +28,7 @@ getPCdata <- function(resource="turkana", version="v1", base_url="http://paleoco
   URL_parameters = paste0("?format=json", "&", filter)
   
   formattedURL <- paste(
-                      paste(base_url, "API", version, resource, sep="/"), 
+                      paste(base_url, "API", version, dataset, sep="/"), 
                       URL_parameters, 
                       sep="/"
                       )
@@ -36,7 +36,7 @@ getPCdata <- function(resource="turkana", version="v1", base_url="http://paleoco
   attempt <-  GET(url = formattedURL)
   if (attempt$status_code == 401) {
     #if unauthorized, try it with username and api_key
-    if(any(!exists('username'), !exists('api_key'))) stop("You need to set your username and api_key using setPCcredentials(). You can get an api_key at http://paleocore.org/apikey.")
+    if(any(!exists('username'), !exists('api_key'))) stop("You need to set your username and api_key using set_pcore_credentials(). You can get an api_key at http://paleocore.org/apikey.")
     attempt <-  GET(url = sprintf("%s&username=%s&api_key=%s", formattedURL, username, api_key))
   }
   
@@ -50,5 +50,12 @@ getPCdata <- function(resource="turkana", version="v1", base_url="http://paleoco
               return(flat)
             })
   result <- rbind.fill(flattened)
-  return(result)
+  result <- lapply(result, FUN=function(col){
+    if (suppressWarnings(all(!is.na(as.numeric(as.character(col)))))) {
+      as.numeric(as.character(col))
+    } else {
+      col
+    }
+  })
+  return(as.data.frame(result))
 }
