@@ -15,32 +15,32 @@ library(paleocoreR)
 #install.packages("ggplot2")
 library(ggplot2)
 ```
-## First, we can check which resources are available
+## First, we can check which datasets are available
 
-```{r getPCresources}
-getPCresources()
+```{r list_pcore_datasets}
+list_pcore_datasets()
 ```
 
 ## Authentication
 
-Some datasets require authentication (turkana does not).  You can store your PaleoCore username and api_key for authentication using the convenience function `setPCcredentials()`.  If you have a paleocore login account, you can obtain your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
+Some datasets require authentication (turkana does not).  You can store your PaleoCore username and api_key for authentication using the convenience function `set_pcore_credentials()`.  If you have a paleocore login account, you can obtain your api_key at [http://paleocore.org/apikey](http://paleocore.org/apikey). If you need to create a login account please [contact the paleocore administrators](http://paleocore.org/about). 
 
 ```{r authentication}
-setPCcredentials(username="proconsul", api_key="s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
+set_pcore_credentials(username="proconsul", api_key="s93jsp9823jd83mw2md922d93kd73f23kdf23ld7")
 ```
 
 ## See which fields can be filtered on in the Turkana dataset
 
-```{r getfilters}
-getPCfilters(resource="turkana")
+```{r listfilters}
+list_pcore_filters(dataset="turkana")
 ```
 
 
-## Getting data using `getPCdata()`
+## Getting data using `get_pcore_data()`
 
-The workhorse function of the `paleocoreR` package is called `getPCdata()`.  Here we will download all of the bovid records from the turkana dataset.  
+The workhorse function of the `paleocoreR` package is called `get_pcore_data()`.  Here we will download all of the bovid records from the turkana dataset.  
 ```{r getbovids}
-bovids <- getPCdata(resource = "turkana", family="Bovidae", limit=0)
+bovids <- get_pcore_data(dataset = "turkana", family="Bovidae", limit=0)
 str(bovids)
 ```
 
