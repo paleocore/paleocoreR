@@ -3,12 +3,15 @@
 \alias{list_pcore_datasets}
 \title{function to get available PaleoCore datasets}
 \usage{
-list_pcore_datasets(version = "v1", base_url = "http://paleocore.org")
+list_pcore_datasets(version = "v1", base_url = "http://paleocore.org",
+  return_list = FALSE)
 }
 \arguments{
 \item{version}{The version of the API to use, defaults to "v1"}
 
 \item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org}
+
+\item{return_list}{Boolean. Whether or not to return a list of available datasets, or if not, to simply print them to console.  Default is FALSE.}
 }
 \description{
 This function gets a listing of the individual data datasets that are accessible using the get_pcore_data() function
