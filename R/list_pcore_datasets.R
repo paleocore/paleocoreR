@@ -27,6 +27,8 @@ list_pcore_datasets <- function(version="v1", base_url="http://paleocore.org", r
       if(attempt$status_code == 200) return("Publicly available dataset")
       })
   )
+  #remove full_related resources
+  datasets <- datasets[!grepl("full_related",names(datasets))]
   
   message("The following datasets are available through the PaleoCore API.")
   invisible(
