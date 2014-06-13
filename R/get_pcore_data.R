@@ -4,6 +4,7 @@
 #' @param dataset Name of paleocore dataset you want data from. Default is "turkana"
 #' @param version Which version of the paleocore to use. Default is "v1"
 #' @param base_url The base url for the API, with no trailing slash. Defaults to http://paleocore.org
+#' @param full_related Whether to include full information from related resources or simply return the URI of related resources.  Default is FALSE.
 #' @param limit Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records. 
 #' @param ... An arbitrary number of filter critera in the following form: genus__contains="Austral"
 #' @keywords PaleoCore API paleoanthropology
@@ -11,10 +12,13 @@
 #' @examples
 #' get_pcore_data(tribe__contains="Tragel", limit=0)
 
-get_pcore_data <- function(dataset="turkana", version="v1", base_url="http://paleocore.org", ...) {
+get_pcore_data <- function(dataset="turkana", version="v1", base_url="http://paleocore.org", full_related = FALSE, limit=20, ...) {
   require(httr)
   require(jsonlite)
   require(plyr)
+  
+  if(full_related) dataset <- paste0(dataset, "_full_related")
+  if(limit == 0) message("You are requesting the whole dataset (limit = 0).  This could take a while!")
   #format the filters as GET parameters
   filter <- paste(
                 paste(
@@ -25,7 +29,7 @@ get_pcore_data <- function(dataset="turkana", version="v1", base_url="http://pal
                 collapse="&"
                 )
   
-  URL_parameters = paste0("?format=json", "&", filter)
+  URL_parameters = paste0("?format=json", "&", "limit=", limit, "&", filter)
   
   formattedURL <- paste(
                       paste(base_url, "API", version, dataset, sep="/"), 

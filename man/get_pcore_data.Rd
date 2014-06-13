@@ -4,7 +4,8 @@
 \title{function to download data from the paleocore API}
 \usage{
 get_pcore_data(dataset = "turkana", version = "v1",
-  base_url = "http://paleocore.org", ...)
+  base_url = "http://paleocore.org", full_related = FALSE, limit = 20,
+  ...)
 }
 \arguments{
 \item{dataset}{Name of paleocore dataset you want data from. Default is "turkana"}
@@ -12,6 +13,8 @@ get_pcore_data(dataset = "turkana", version = "v1",
 \item{version}{Which version of the paleocore to use. Default is "v1"}
 
 \item{base_url}{The base url for the API, with no trailing slash. Defaults to http://paleocore.org}
+
+\item{full_related}{Whether to include full information from related resources or simply return the URI of related resources.  Default is FALSE.}
 
 \item{limit}{Limits the number of records returned.  Default is 20. Use `limit=0` to return all matching records.}
 
