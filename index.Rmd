@@ -1,3 +1,11 @@
+---
+output:
+  html_document:
+    theme: united
+    highlight: pygments
+---
+
+
 Using the Paleocore R API Interface
 ========================================================
 
