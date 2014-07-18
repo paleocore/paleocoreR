@@ -1,0 +1,13 @@
+base
+datasets
+devtools
+ggplot2
+graphics
+grDevices
+httr
+jsonlite
+methods
+paleocoreR
+plyr
+stats
+utils

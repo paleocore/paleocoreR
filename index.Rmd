@@ -47,14 +47,21 @@ list_pcore_filters(dataset="turkana")
 ## Getting data using `get_pcore_data()`
 
 The workhorse function of the `paleocoreR` package is called `get_pcore_data()`.  Here we will download all of the bovid records from the turkana dataset.  
-```{r getbovids}
+```{r getbovids, cache=TRUE}
 bovids <- get_pcore_data(dataset = "turkana", family="Bovidae", limit=0)
+```
+
+This results in an object called `bovids` that contains all the bovid records from the Turkana dataset.  We can look at the structure of our data using the `str()` function. 
+
+```{r}
 str(bovids)
 ```
 
-## Plot bovids by tribe
-```{r plotbytribe,  fig.width=14, height=9}
-qplot(data=bovids, x=tribe)
-```
+## Plots
 
+We can now do a great many useful things with this dataset.  For instance, we might plot a histogram of the number of identified bovid specimens by tribe. 
+
+```{r plotbytribe,  fig.width=14, height=9}
+qplot(data=bovids, x=tribe, main="# Bovid Specimens by Tribe")
+```
 
